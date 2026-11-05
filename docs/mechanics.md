@@ -29,7 +29,7 @@ In EasyEDA, the electronics side is the **top layer**. The display socket is a t
 | H3 | 3.00 | 95.00 |
 | H4 | 52.50 | 95.00 |
 
-Holes are Ø3.20 mm, with a 49.50 × 92.00 mm pattern **[fact]**. Pads on our board: Ø5.5 mm keep-out for M3 hardware **[decision]**.
+Holes are Ø3.20 mm for M3, with a 49.50 × 92.00 mm pattern **[fact]**. Pads on our board are Ø5.5 mm on GND **[decision]**. Corners have a 3.0 mm radius, concentric with the holes **[decision]**.
 
 ## Display socket
 

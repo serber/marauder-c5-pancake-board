@@ -1,6 +1,6 @@
 # Marauder ESP32-C5 board with the Pancake pinout: requirements and plan
 
-Status: **steps 1 to 4 approved; step 5 ready for review**
+Status: **steps 1 to 5 approved; step 6 ready for review**
 Date: 2026-11-06 · Board revision: A (not started)
 
 This is the main project document. All work follows section 8, and decisions go in the log in section 10.
@@ -330,6 +330,8 @@ The user requires the schematic to be split into separate sheets by function. Ea
 |---|---|---|---|
 | 1 | 2026-11-05 | Q1: the target is the Pancake pinout with `pancake` firmware. The user confirmed by renaming the repository and recreating the project | Repository `marauder-c5-pancake-board`, EasyEDA project `Marauder C5 Pancake` |
 | 1 | 2026-11-05 | All project files and Markdown are written in English | This file translated |
+| 6 | 2026-11-06 | M3 holes and 3 mm rounded corners, per the reviewer. Placement done | `placement.md` |
+| 5 | 2026-11-06 | Step 5 approved | — |
 | 5 | 2026-11-06 | Stack-up, net classes, and rules set; four-layer template could not be applied through the API, so a customized two-layer template is used | `design-rules.md` |
 | 4 | 2026-11-06 | Step 4 approved, including the bridge core on VBUS. Name-attribute ERC warnings accepted | — |
 | 4 | 2026-11-06 | Schematic drawn on seven sheets. Bridge core moved from 3V3 to VBUS, per the CH343 datasheet; this changes the approach approved in step 2 and is up for review. Module changed to the V1.2 listing | `circuit-design.md`, `component-links.md`, `power-design.md` |

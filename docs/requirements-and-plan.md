@@ -1,6 +1,6 @@
 # Marauder ESP32-C5 board with the Pancake pinout: requirements and plan
 
-Status: **steps 1 to 5 approved; step 6 ready for review**
+Status: **steps 1 to 5 approved; step 6 updated without on-board GPS, ready for review**
 Date: 2026-11-06 · Board revision: A (not started)
 
 This is the main project document. All work follows section 8, and decisions go in the log in section 10.
@@ -22,7 +22,7 @@ The board plugs directly onto the pin header of the 3.5" display. The board come
 - one USB-C port for flashing, console, and charging
 - 18650 charging and protection
 - a battery fuel gauge
-- optional GPS, with pins broken out for an external module
+- a header for an external GPS module
 
 ---
 
@@ -123,8 +123,8 @@ Display data from the lcdwiki MSP3526 drawing **[fact]**:
 | F5 | RESET and BOOT buttons. BOOT also acts as the select button (GPIO28, `C_BTN`) | Firmware |
 | F6 | Addressable LED on GPIO27 | Firmware |
 | F7 | MAX17048 fuel gauge on I2C, address 0x36, on the bus shared with touch | Firmware |
-| F8 | On-board GPS footprint. The board works fully without it | Brief |
-| F9 | External GPS header: VCC, GND, TX, RX, PPS | Brief |
+| F8 | ~~On-board GPS footprint~~ Removed by the reviewer on 2026-11-06 to free board area. The board works fully without GPS | Reviewer |
+| F9 | External GPS header J2: filtered 3V3, GND, TX, RX, PPS. PPS is a free pin, not connected to the ESP | Brief |
 | F10 | Passive buzzer on GPIO6 through a transistor | Case build |
 | F11 | Display socket 1×14, 2.54 mm, position per 3.4; the display plugs directly into it | 3.3, 3.4 |
 
@@ -151,7 +151,7 @@ Display data from the lcdwiki MSP3526 drawing **[fact]**:
 | M1 | The board outline is 55.50 × 98.00 mm, and the display mounting holes line up | 3.4 |
 | M2 | USB-C, switch, buttons, and the SD slot stay reachable from the board edges in a future case | 3.4 |
 | M3 | A 3D assembly with the cell and display is checked for clearances, and a STEP file is exported for the case design | Skill, step 4 |
-| M4 | 4 layers, 1.6 mm **[decision]**: solid ground under the DC-DC and the GPS path | Section 7 |
+| M4 | 4 layers, 1.6 mm **[decision]**: solid ground under the DC-DC | Section 7 |
 | M5 | Parts suit hand assembly on a hot table: 0603 passives where possible. Each part has datasheet and order links, and key parts must be buyable from more than one shop | Q4, Q7, skill step 4 |
 | M6 | Test points: VBAT, VSYS, 3V3, UART0, EN, GPIO28 | Debugging |
 
@@ -236,10 +236,9 @@ Starting candidates from step 1. Final parts are in `circuit-design.md`.
 | USB-UART | CH343P, CP2102N-A02-GQFN20 | C2846043, C1550542 |
 | USB ESD | USBLC6-2SC6 | C323793 |
 | LED | XL-1615RGBC-2812B (check operation at 3.3 V) | C5349954 |
-| GPS | ATGM336H-5N31 | C90770 |
 | Cell holder | Keystone 1042 size class (Q6). Alternatives: MY-18650-02, BH-18650-B1BA002 | C5249310, C2979182, C2988620 |
 
-GPS: the module supports active and passive antennas. For a passive antenna the manufacturer advises an LNA before the input, so step 3 must determine the type of the ceramic antenna in the case BOM. The on-board option uses U.FL for the case antenna and antenna power from VCC_RF.
+The GPS module is external, on J2.
 
 ---
 
@@ -293,7 +292,7 @@ The user requires the schematic to be split into separate sheets by function. Ea
 | 04_MCU | ESP32-C5 module, decoupling, EN, strapping, buttons, LED, buzzer |
 | 05_USB_UART | USB-UART bridge, auto-bootloader |
 | 06_Display | Display socket, I2C pull-up pads |
-| 07_GPS | ATGM336H, U.FL, supply filter, external header |
+| 07_GPS | Supply filter, external GPS header |
 
 ### 8.2 First-board checklist
 
@@ -303,7 +302,7 @@ The user requires the schematic to be split into separate sheets by function. Ea
 3. Charging: with the device off and on.
 4. USB: port detection, auto-bootloader, flashing `pancake`.
 5. Display, touch, SD, battery percentage, LED, buzzer, button.
-6. Wi-Fi 2.4/5 GHz, BLE, GPS: on-board, external module, and without GPS.
+6. Wi-Fi 2.4/5 GHz, BLE, GPS through J2, and without GPS.
 7. Heating and voltage droop during TX peaks at low charge.
 8. Fit of the display and the cell holder; STEP check for the case.
 
@@ -317,7 +316,7 @@ The user requires the schematic to be split into separate sheets by function. Ea
 | Different display revision: pin order or controller | Board does not work | Check the real module before ordering boards |
 | Dim backlight or unstable SD at `VCC` = 3.3 V | Poor brightness | Measure at bring-up; raising the rail within the ESP32-C5 limit is the fallback |
 | Exposed cell near the display-side parts or a hand-assembly short | Damage | Protection on board, test before fitting the cell |
-| DC-DC noise degrades GPS reception | No fix | Filter, separation, solid ground, U.FL antenna |
+| DC-DC noise reaches an external GPS | No fix | Filter on J2, module and antenna away from the DC-DC in the case |
 | A part is out of stock | Delay | Two candidates for each key block |
 | A Pancake update changes pins | Incompatibility | Version fixed at v1.20.0; recheck before ordering |
 | 3V3 droop during TX peaks | Resets | Current margin, capacitors at the module, measurement |
@@ -330,6 +329,7 @@ The user requires the schematic to be split into separate sheets by function. Ea
 |---|---|---|---|
 | 1 | 2026-11-05 | Q1: the target is the Pancake pinout with `pancake` firmware. The user confirmed by renaming the repository and recreating the project | Repository `marauder-c5-pancake-board`, EasyEDA project `Marauder C5 Pancake` |
 | 1 | 2026-11-05 | All project files and Markdown are written in English | This file translated |
+| 1, 4, 5, 6 | 2026-11-06 | On-board GPS removed; J2 kept and populated. U8, J6, L3, R29 deleted, RF_50R class deleted, module moved down, placement respaced | All docs |
 | 6 | 2026-11-06 | M3 holes and 3 mm rounded corners, per the reviewer. Placement done | `placement.md` |
 | 5 | 2026-11-06 | Step 5 approved | — |
 | 5 | 2026-11-06 | Stack-up, net classes, and rules set; four-layer template could not be applied through the API, so a customized two-layer template is used | `design-rules.md` |

@@ -55,14 +55,11 @@ Inner layers need far more width, so high-current paths run on L1 and L4, and L3
 | POWER_2A | BAT, VSYS, 3V3, CELL_N, B_N, FS_D | 2.0 A | Min 0.8 mm, default 1.0 mm, or a pour | Track rule on class |
 | VBUS_1A | VBUS | 1.0 A | Min 0.3 mm, default 0.5 mm | Track rule on class |
 | SWITCH | DCDC_L1, DCDC_L2 | Part rating | Short and wide on L1, no vias | Class, placement note |
-| RF_50R | GPS_RF | Signal | 0.36 mm on L1 | Track rule on class |
 | SENSE | DCDC_FB, DCDC_EN, CHG_ISET, CHG_ILIM, CHG_TMR, CHG_TS | Signal | Default width, away from L1/L2 | Class, routing note |
 | SPI | SPI_SCK, SPI_MOSI, SPI_MISO | Signal | Default width | Class |
 | Diff pair USB | USB_DP, USB_DN | Signal | 0.2 mm pair, short | Pair defined |
 
 **Vias:** 0.3 mm drill with 18 µm plating is treated as an inner conductor of its barrel width, about 0.7 A (Calc). Use at least 3 vias at each POWER_2A layer change. Prefer staying on L1.
-
-**GPS RF trace:** microstrip over L2, 0.2104 mm dielectric, εr 4.4: 0.36 mm gives 50.5 Ω (Calc, Hammerstad). The 7628 εr is listed as 4.4 and 4.6 by different JLCPCB pages. The trace is short, so the sensitivity is small. No impedance control is ordered.
 
 ## Holder footprint
 
@@ -81,8 +78,7 @@ Measure the bought holder against this before ordering.
 | AGND joined near the IC | Routing note. Schematic uses one GND net | Step 8 |
 | CELL Kelvin at the holder tab | Routing note | Step 8 |
 | DW01A sense at the FET | Routing note | Step 8 |
-| GPS RF short over solid ground | RF_50R rule, L2 solid | Step 8 |
-| GPS filter at the module | Placement note | Step 6 |
+| GPS filter at J2 | Placement note | Step 6 |
 | Copper rise (A12) | Conductor table above | Step 8 |
 
 ## Exceptions

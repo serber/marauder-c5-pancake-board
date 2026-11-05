@@ -71,7 +71,6 @@ Reasons:
 - One reflow pass on the hot table.
 - Nothing on the display side can touch the SD slot, the card, or the FPC.
 - Every part stays reachable for probing, with buttons, USB-C, and U.FL exposed.
-- The GPS antenna faces away from the metal display frame.
 
 The cell holder is fitted by hand after reflow, because the plastic of an unbranded holder is not known to survive reflow.
 

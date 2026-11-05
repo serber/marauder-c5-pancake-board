@@ -25,10 +25,10 @@ The corner radius is concentric with the holes.
 | USB-UART | X 43–55, Y 79–92 | U7, Q4, Q5 | Beside USB, on the way to the module |
 | DC-DC | X 29–46, Y 62–78 | U5, L1, C6–C10, R13–R18 | Between the cell path and the module |
 | Power switch | X 50–56, Y 68–76 | SW1 | On the right edge, lever outward |
-| MCU | X 31–55, Y 35–57 | U6, C11–C13, R19–R21 | Central, close to the DC-DC and the socket |
-| Indicators | X 22–31, Y 42–68 | BZ1, LED1, Q3, D3 | Beside the module |
-| Debug headers | X 21–34, Y 28–35 | J3, J4 | Unpopulated |
-| GPS | X 37–55, Y 12–33 | U8, J6, L2, L3, C18, C19, J2 | Farthest from the DC-DC inductor |
+| MCU | X 31–55, Y 23–45 | U6, C11–C13, R19–R21 | Close to the socket; Y 47–60 stays free for routing |
+| Indicators | X 22–31, Y 31–59 | BZ1, LED1, Q3, D3 | Beside the module |
+| Debug headers | X 21–34, Y 22–29 | J3, J4 | Unpopulated |
+| External GPS | X 39–52, Y 14–21 | J2, L2, C18, C19 | Farthest from the DC-DC inductor |
 | Cell protection | X 22–37, Y 11–23 | Q1, Q2, U3, R9–R11, C4 | At the − tab |
 | Buttons | X 34–48, Y 6–14 | SW2, SW3 | Bottom edge |
 | Display socket | Y 2, display side | J5 | Fixed by the display |
@@ -60,9 +60,9 @@ The capacitor ground pads reach the IC ground through L2. This is an estimate of
 
 | Metric | Value | Evidence |
 |---|---|---|
-| Ratsnest length, GND excluded | 1928 mm | Script, minimum spanning tree per net |
-| Ratsnest crossings | About 360 | Script, an upper estimate |
-| Most congested | X 30–40, Y 10–20 and X 30–40, Y 30–50 | Script, 10 mm grid |
+| Ratsnest length, GND excluded | 1741 mm, was 1928 mm | Script, minimum spanning tree per net |
+| Ratsnest crossings | About 300, was 360 | Script, an upper estimate |
+| Most congested | X 30–40, Y 10–40 | Script, 10 mm grid |
 | Overlaps | None, by part bounding boxes | Script |
 | Beyond the board edge | J1 by 0.7 mm, SW1 by 1.0 mm, intended | Script |
 

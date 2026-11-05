@@ -138,23 +138,16 @@ The CH343 datasheet V1.6 confirms the pinout and a built-in CDC driver path that
 
 ## 07_GPS
 
-The GPS parts are optional. With them unpopulated, the board works and the external header stays usable.
+The on-board GPS was removed. J2 connects an external module.
 
 | Item | Value | Basis |
 |---|---|---|
-| Module | ATGM336H-5N31 | 2.7–3.6 V, under 25 mA continuous, 100 mA peak (DS) |
-| Supply filter | 10 µH, 0805, 10 µF | Corner 16 kHz; about 7700× at 1.4 MHz (Calc). Ferrites are weak at 1.4 MHz |
+| J2 | 1×5, 2.54 mm: GPS_3V3, GND, GPS_TXD, GPS_RXD, GPS_PPS | F9 |
+| Supply filter | 10 µH, 0805, 10 µF, 100 nF | Corner 16 kHz; about 7700× at 1.4 MHz (Calc). Ferrites are weak at 1.4 MHz |
 | Filter drop | About 0.08 V at 100 mA with 0.8 Ω | Est |
-| Antenna feed | 47 nH from VCC_RF to the RF line | DS active antenna circuit |
-| Antenna | U.FL, **active** ceramic antenna | Passive needs an extra LNA stage (DS) |
-| RF trace | 50 Ω, short | DS |
-| VBAT (backup) | Tied to the filtered VCC | No hot start; cold start each power-up |
-| ON/OFF, nRESET | Confirm in step 4 | nRESET may float (DS) |
-| External header | 1×5: VCC, GND, TXD, RXD, PPS, unpopulated | F9 |
+| PPS | Not connected to the ESP | No firmware uses it |
 
-Do not connect the on-board module and an external one at the same time, because both would drive GPIO14.
-
-The antenna listed in the case BOM is unverified. Buy an antenna described as active, 3.3 V, with a U.FL lead.
+GPS_TXD (module TX) goes to GPIO14, and GPS_RXD goes to GPIO13. With no module fitted, GPIO14 has nothing driving it. The firmware should show no GPS. Check this at bring-up.
 
 ## Part list
 
@@ -183,8 +176,8 @@ Avoid AliExpress for the ESP32-C5 module, MAX17048, and TPS63802 if another sour
 | 05 | CH343P | C2846043 | 1 | QFN-16 3×3 |
 | 05 | MMBT3904 | C20526 | 2 | SOT-23 |
 | 06 | Socket PM254-1-14-Z-8.5 | C2897377 | 1 | THT |
-| 07 | ATGM336H-5N31 (optional) | C90770 | 1 | 9.7×10.1 mm |
-| 07 | U.FL-R-SMT-1(01) (optional) | C598199 | 1 | SMD |
+| 07 | Header PZ254V-11-05P | C492404 | 1 | THT |
+| 07 | Inductor SDFL2012S100KTF | C1046 | 1 | 0805 |
 
 Plus 0603 resistors and capacitors, 0805 22 µF capacitors, and a 10 µH 0805 inductor. Step 4 lists exact values.
 
@@ -194,12 +187,12 @@ The schematic is in EasyEDA project `Marauder C5 Pancake`, seven sheets, as in `
 
 | Check | Result | Evidence |
 |---|---|---|
-| Netlist against the design table | 79 parts, 65 nets, 0 differences; no single-pin nets | Exported netlist compared by script |
+| Netlist against the design table | 75 parts, 62 nets, 0 differences; one single-pin net, GPS_PPS at J2 | Exported netlist compared by script |
 | Unused pins | Marked no-connect | Schematic |
 | ERC | DW_VDD duplicate name fixed. Two warnings accepted: part names were set to values such as 10k, which differs from the library Name. Supplier Part codes are correct in the netlist | EasyEDA log, read by the reviewer; rerun pending |
-| 3D models | 41 of 42 distinct parts; TPS63802 has none, use a 3 × 2 × 1 mm envelope | Library record |
+| 3D models | 38 of 39 distinct parts; TPS63802 has none, use a 3 × 2 × 1 mm envelope | Library record |
 
-Symbol pins checked against the datasheet: BQ24074, TPS63802, MAX17048, ESP32-C5-WROOM-1U, CH343P, ATGM336H.
+Symbol pins checked against the datasheet: BQ24074, TPS63802, MAX17048, ESP32-C5-WROOM-1U, CH343P.
 
 Checked against typical use only, not against a datasheet: USBLC6-2SC6, XL-1615 LED, SW1, MLT-8530, TS-1187A, FS8205A, DW01A pin order.
 

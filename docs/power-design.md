@@ -123,8 +123,7 @@ di/dt: No data, because the edge time is not in the datasheet. Loop inductance b
 | ISET, ILIM, TS | Charger programming | VBUS and charger heat | Resistors at the pins, returned to VSS | Step 8 |
 | CELL at MAX17048 | Fuel gauge voltage | Cell path current | Kelvin from the holder tab, not from the shared pour | Step 8 |
 | DW01A class CS | Overcurrent sense | Cell path current | Sensed at the FET, with a filter at the pin | Step 8 |
-| GPS RF_IN | GNSS signal | L1, L2, inductor, SPI | Short 50 Ω trace, solid ground reference, far from the DC-DC | Step 6, step 8 |
-| GPS VCC | Below 50 mVpp ripple (manual) | DC-DC ripple | Filter at the module | Measure |
+| GPS_3V3 at J2 | Below 50 mVpp ripple, for an ATGM336H class module (manual) | DC-DC ripple | Filter at J2 | Measure |
 | USB D+/D− | USB full speed | SPI | Short, matched pair | Step 8 |
 
 ## Charger heat
@@ -166,7 +165,7 @@ Consequences:
 | A6 | Cell path drop at 1.22 A | ≤ 0.35 V | Decision | Calc, then measure | Pass: 0.31 V, Est |
 | A7 | Falling cutoff at or above 2.9 V | 2.91 V min | Calc | Measure | Pass by Calc |
 | A8 | Off drain | ≤ 50 µA | Decision | Measure | Pass at 29 µA typ; 53 µA worst case exceeds, Calc |
-| A9 | GPS supply ripple | ≤ 50 mVpp | Manual | Measure | No data; filter gives about 7700× at 1.4 MHz, Calc |
+| A9 | J2 supply ripple | ≤ 50 mVpp | Manual | Measure | No data; filter gives about 7700× at 1.4 MHz, Calc |
 | A10 | No restart loop near empty | Stops cleanly | Decision | Bring-up | No data |
 | A11 | Reversed cell | No damage | P6 | Bring-up, current limited supply first | No data |
 | A12 | Copper rise at design current | Set in step 5 | Step 5 | Calc | No data |

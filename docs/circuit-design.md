@@ -112,7 +112,7 @@ This meets the A6 limit of 0.35 V, raised from 0.3 V. The case is the full 1 A l
 | EN | 10 kΩ pull-up, 1 µF | DS |
 | GPIO27, GPIO28 | 10 kΩ pull-ups | Boot straps |
 | Buttons | RESET to EN, BOOT to GPIO28 | |
-| LED | XL-1615RGBC-WS2812B, 0.1 µF | LED datasheet 2.5–5.5 V; distributors list higher. Check at bring-up |
+| LED | SK6812MINI-HS, VDD from DCDC_SW, 0.1 µF | Rated 3.7–5.5 V; the rail runs 3.0–4.4 V, so it can fail on a low cell. DIN high needs 0.65–0.7 × VDD, and 3.3 V meets it |
 | Buzzer | MLT-8530, MMBT3904, 1 kΩ base, flyback diode | GPIO6 |
 | VBAT divider | 200 kΩ / 100 kΩ, unpopulated | For JanOS |
 
@@ -169,7 +169,7 @@ Avoid AliExpress for the ESP32-C5 module, MAX17048, and TPS63802 if another sour
 | 03 | WPN4020HR47MT | C370628 | 1 | 4×4 mm |
 | 03 | Slide switch MSK12C02 type | C47020938 | 1 | SMD, side |
 | 04 | ESP32-C5-WROOM-1U-N8R8-V1.2 | C54951858 | 1 | Module |
-| 04 | XL-1615RGBC-WS2812B | C5349954 | 1 | 1.6×1.5 mm |
+| 04 | SK6812MINI-HS | C2922787 | 1 | 3.5×3.5 mm |
 | 04 | MLT-8530 | C94599 | 1 | 8.5×8.5 mm |
 | 04 | MMBT3904 | C20526 | 1 | SOT-23 |
 | 04 | Button TS-1187A-B-A-B | C318884 | 2 | 5.1×5.1 mm |

@@ -1,6 +1,6 @@
 # Marauder ESP32-C5 board with the Pancake pinout: requirements and plan
 
-Status: **steps 1 to 5 approved; step 6 updated without on-board GPS, ready for review**
+Status: **steps 1 to 9 done; remaining gates waived by the reviewer on 2026-11-06. Prototype package exported, not ordered, board not validated**
 Date: 2026-11-06 · Board revision: A (not started)
 
 This is the main project document. All work follows section 8, and decisions go in the log in section 10.
@@ -121,7 +121,7 @@ Display data from the lcdwiki MSP3526 drawing **[fact]**:
 | F3 | One USB-C: flashing, console, charging | Brief |
 | F4 | One-click flashing: automatic bootloader entry and reset | Brief |
 | F5 | RESET and BOOT buttons. BOOT also acts as the select button (GPIO28, `C_BTN`) | Firmware |
-| F6 | Addressable LED on GPIO27 | Firmware |
+| F6 | Addressable LED on GPIO27, on the display side, seen through a side window in the case | Firmware, reviewer |
 | F7 | MAX17048 fuel gauge on I2C, address 0x36, on the bus shared with touch | Firmware |
 | F8 | ~~On-board GPS footprint~~ Removed by the reviewer on 2026-11-06 to free board area. The board works fully without GPS | Reviewer |
 | F9 | External GPS header J2: filtered 3V3, GND, TX, RX, PPS. PPS is a free pin, not connected to the ESP | Brief |
@@ -329,6 +329,9 @@ The user requires the schematic to be split into separate sheets by function. Ea
 |---|---|---|---|
 | 1 | 2026-11-05 | Q1: the target is the Pancake pinout with `pancake` firmware. The user confirmed by renaming the repository and recreating the project | Repository `marauder-c5-pancake-board`, EasyEDA project `Marauder C5 Pancake` |
 | 1 | 2026-11-05 | All project files and Markdown are written in English | This file translated |
+| 6–9 | 2026-11-06 | **Gates waived:** the reviewer approved all remaining steps in advance, unless something critical appears, and left the work unattended. Routing mode C chosen by the agent. No ordering, no push | `routing.md`, `verification.md`, `pcb/fabrication/` |
+| 4, 6 | 2026-11-06 | LED changed to SK6812MINI-HS on the display side, powered from DCDC_SW, with a side window in the case. USB-C moved to the right edge beside SW1. Parts kept away from the edge and holder | `placement.md`, `circuit-design.md`, `mechanics.md` |
+| 6 | 2026-11-06 | Header kept for the display instead of the P2 flat cable | — |
 | 1, 4, 5, 6 | 2026-11-06 | On-board GPS removed; J2 kept and populated. U8, J6, L3, R29 deleted, RF_50R class deleted, module moved down, placement respaced | All docs |
 | 6 | 2026-11-06 | M3 holes and 3 mm rounded corners, per the reviewer. Placement done | `placement.md` |
 | 5 | 2026-11-06 | Step 5 approved | — |

@@ -1,6 +1,6 @@
 # Placement (step 6)
 
-Status: ready for review. Implemented in PCB1. Coordinates follow `mechanics.md`: view from the electronics side, display socket at the bottom, millimetres.
+Status: done. Implemented in PCB1. Coordinates follow `mechanics.md`: view from the electronics side, display socket at the bottom, millimetres.
 
 ![Top side placement](images/placement-top.png)
 
@@ -20,9 +20,11 @@ The corner radius is concentric with the holes.
 | Block | Area, mm | Parts | Reason |
 |---|---|---|---|
 | Battery | X 0–21, Y 6–92 | BT1 | + tab at the top, − tab at the bottom |
-| USB and charger | X 22–43, Y 78–98 | J1, U1, U2, charger passives, LEDs | Short path from USB to the charger and the + tab |
+| USB-C | X 49–56, Y 79–88 | J1, U1, R1, R2 | Right edge, beside SW1 |
+| Charger | X 23–33, Y 79–91 | U2, charger passives | Beside the + tab |
+| Status LEDs | X 23–30, Y 92–96 | D1, D2, R7, R8 | Top edge |
 | Fuel gauge | X 15–22, Y 93–98 | U4, C5 | At the + tab for a Kelvin connection |
-| USB-UART | X 43–55, Y 79–92 | U7, Q4, Q5 | Beside USB, on the way to the module |
+| USB-UART | X 34–50, Y 86–96 | U7, Q4, Q5 | Beside USB-C |
 | DC-DC | X 29–46, Y 62–78 | U5, L1, C6–C10, R13–R18 | Between the cell path and the module |
 | Power switch | X 50–56, Y 68–76 | SW1 | On the right edge, lever outward |
 | MCU | X 31–55, Y 23–45 | U6, C11–C13, R19–R21 | Close to the socket; Y 47–60 stays free for routing |
@@ -32,6 +34,7 @@ The corner radius is concentric with the holes.
 | Cell protection | X 22–37, Y 11–23 | Q1, Q2, U3, R9–R11, C4 | At the − tab |
 | Buttons | X 34–48, Y 6–14 | SW2, SW3 | Bottom edge |
 | Display socket | Y 2, display side | J5 | Fixed by the display |
+| RGB LED | (45.5, 94.4), display side | LED1, C14 | Side window in the case |
 
 ## Socket check
 
@@ -60,11 +63,11 @@ The capacitor ground pads reach the IC ground through L2. This is an estimate of
 
 | Metric | Value | Evidence |
 |---|---|---|
-| Ratsnest length, GND excluded | 1741 mm, was 1928 mm | Script, minimum spanning tree per net |
-| Ratsnest crossings | About 300, was 360 | Script, an upper estimate |
+| Ratsnest length, GND excluded | About 1830 mm before routing | Script, minimum spanning tree per net |
+| Ratsnest crossings | About 340 before routing | Script, an upper estimate |
 | Most congested | X 30–40, Y 10–40 | Script, 10 mm grid |
 | Overlaps | None, by part bounding boxes | Script |
-| Beyond the board edge | J1 by 0.7 mm, SW1 by 1.0 mm, intended | Script |
+| Beyond the board edge | J1 by 1.5 mm, SW1 by 1.0 mm, intended | Script |
 
 The congested areas are where display and I2C lines leave the left module pins for the socket. Lines from the right module pins must go around the module or pass under it on L4, so the display nets take L4 for most of their length.
 

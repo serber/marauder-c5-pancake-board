@@ -64,7 +64,7 @@ The display pins are 5.84 mm long above their plastic **[fact]**. A socket lower
 
 ## Sides of the board
 
-**[decision]** All SMD parts and the holder go on the rear (top layer). The display-facing side carries only the socket and standoffs.
+**[decision]** All SMD parts and the holder go on the rear (top layer). The display-facing side carries the socket, standoffs, LED1, and C14.
 
 Reasons:
 
@@ -100,7 +100,7 @@ The cell is user-swappable (P11), so the future case needs a battery door or a r
 | Zone | Rule | Reason |
 |---|---|---|
 | Under the holder body | No parts, no exposed copper, no vias on top | Open frame, and the can sits close to the board |
-| Display-facing side | No parts except the socket and standoffs | SD card, FPC, display parts up to 2.20 mm |
+| Display-facing side | Only the socket, standoffs, LED1, and C14 | SD card, FPC, display parts up to 2.20 mm |
 | Around holes | Ø5.5 mm free on both sides | M3 hardware |
 | Right edge near Y 51 | Keep the edge accessible in the case | SD card opening on the display |
 
@@ -114,11 +114,12 @@ Exact positions are set in step 6. All go on the electronics side.
 
 | Part | Edge | Note |
 |---|---|---|
-| USB-C | Top short edge, Y = 98 | Far from the display socket and easy to reach in the case |
-| Slide switch | Right long edge | Sets the case opening |
-| RESET, BOOT | Right long edge or top edge | Reachable with the case closed if possible |
+| USB-C | Right long edge, Y ≈ 83.6, beside SW1 | Moved by the reviewer |
+| Slide switch | Right long edge, Y ≈ 72 | Sets the case opening |
+| RESET, BOOT | Rear, near the bottom edge | Need a push rod or an opening in the case |
 | U.FL (Wi-Fi) | On the module | Pigtail to the SMA in the case |
-| External GPS header | Electronics zone | 1×5, 2.54 mm |
+| External GPS header | J2, rear, X ≈ 45.5, Y ≈ 19.5 | 1×5, 2.54 mm |
+| LED1 | Display side, (45.5, 94.4), top short edge | Needs a side window in the case. The display PCB covers it from the front |
 
 ## Open items
 

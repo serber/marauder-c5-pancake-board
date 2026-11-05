@@ -32,7 +32,7 @@ Cell− ─ reverse-protection N-FET ─ B− ─ protection FETs (DW01A + FS820
 | Mode | USB | Switch | VSYS | 3V3 | Charging | Notes |
 |---|---|---|---|---|---|---|
 | Off | No | Off | VBAT | Off | No | Drain: protection, gauge, DC-DC shutdown (45 nA typ, 600 nA max, DS) |
-| Charge while off | Yes | Off | 4.4 V | Off | Yes | Bridge unpowered, no USB port on the host |
+| Charge while off | Yes | Off | 4.4 V | Off | Yes | Bridge runs from VBUS and enumerates; the ESP stays off |
 | Run on battery | No | On | VBAT − about 0.1 V | On | No | VBAT to OUT drop 50 mV typ, 100 mV max at 1 A (DS) |
 | Run on USB | Yes | On | 4.3 to 4.5 V (DS) | On | Yes, reduced by load | Flash and CLI work here |
 | No cell | Yes | On | 4.4 V, limited to 450–500 mA in | On | No | TX peaks can reset the device, because no cell backs up the 500 mA limit. Check at bring-up |
@@ -41,7 +41,7 @@ Cell− ─ reverse-protection N-FET ─ B− ─ protection FETs (DW01A + FS820
 | Protection tripped | — | — | — | Off | — | Cleared by the DW01A class recovery behavior, step 3 |
 | Reversed cell | Any | Any | Must stay safe | — | No | Series reverse protection blocks it |
 
-The bridge is powered from 3V3 (P10). It and the ESP are always on or off together, so neither can back-power the other. Flashing therefore needs the switch on. Step 3 checks the bridge idle drain with no USB connected.
+The bridge core runs from USB VBUS and only its I/O runs from 3V3, as its datasheet recommends. It draws nothing from the cell without USB, and VIO does not back-feed the core (P10). Flashing needs the switch on, because the ESP is off otherwise.
 
 ## Cutoff with one switch
 

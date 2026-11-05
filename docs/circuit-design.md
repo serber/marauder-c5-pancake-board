@@ -107,7 +107,7 @@ This meets the A6 limit of 0.35 V, raised from 0.3 V. The case is the full 1 A l
 
 | Item | Value | Basis |
 |---|---|---|
-| Module | ESP32-C5-WROOM-1U-N8R8 | Marauder target: 8 MB flash, PSRAM |
+| Module | ESP32-C5-WROOM-1U-N8R8-V1.2 | Marauder target: 8 MB flash, PSRAM. The non-V1.2 listing is marked discontinued |
 | Decoupling | 22 µF + 0.1 µF at pin 2 | DS peripheral schematic |
 | EN | 10 kΩ pull-up, 1 µF | DS |
 | GPIO27, GPIO28 | 10 kΩ pull-ups | Boot straps |
@@ -120,11 +120,13 @@ This meets the A6 limit of 0.35 V, raised from 0.3 V. The case is the full 1 A l
 
 | Item | Value | Basis |
 |---|---|---|
-| Bridge | CH343P, from 3V3 | 3 mA supply, 90 µA quiescent (LCSC listing); hot-table package |
-| Auto-bootloader | Two MMBT3904 and two 10 kΩ, RTS/DTR to EN and GPIO28 | Standard ESP circuit |
+| Bridge | CH343P: VDD5 and VBUS pins from USB VBUS, V3 on its own 100 nF, VIO from 3V3 | Dual supply recommended by the datasheet. No draw from the cell, and VIO does not back-feed VDD5 or V3 (DS) |
+| USB lines | Direct to the connector, no series resistors | DS |
+| DTR pin | No pull-down | A 3–8 kΩ pull-down at reset would select half-duplex mode (DS) |
+| Auto-bootloader | Two MMBT3904 and two 10 kΩ, cross-coupled RTS/DTR to EN and GPIO28 | Standard ESP circuit |
 | Fallback | CH340C (SOP-16), works at 3.3 V with V3 to VCC (DS) | Not pin compatible |
 
-The CH343P datasheet could not be downloaded, so pin wiring and macOS driver behavior are unverified. Step 4 needs it before the sheet is drawn. If it stays unavailable, switch to CH340C, whose datasheet was read, at the cost of more idle current.
+The CH343 datasheet V1.6 confirms the pinout and a built-in CDC driver path that needs no install. macOS behavior is checked at bring-up.
 
 ## 06_Display
 
@@ -173,7 +175,7 @@ Avoid AliExpress for the ESP32-C5 module, MAX17048, and TPS63802 if another sour
 | 03 | TPS63802DLAR | C704850 | 1 | VSON-10 3×2 |
 | 03 | WPN4020HR47MT | C370628 | 1 | 4×4 mm |
 | 03 | Slide switch MSK12C02 type | C47020938 | 1 | SMD, side |
-| 04 | ESP32-C5-WROOM-1U-N8R8 | C51950748 | 1 | Module |
+| 04 | ESP32-C5-WROOM-1U-N8R8-V1.2 | C54951858 | 1 | Module |
 | 04 | XL-1615RGBC-WS2812B | C5349954 | 1 | 1.6×1.5 mm |
 | 04 | MLT-8530 | C94599 | 1 | 8.5×8.5 mm |
 | 04 | MMBT3904 | C20526 | 1 | SOT-23 |
@@ -185,3 +187,22 @@ Avoid AliExpress for the ESP32-C5 module, MAX17048, and TPS63802 if another sour
 | 07 | U.FL-R-SMT-1(01) (optional) | C598199 | 1 | SMD |
 
 Plus 0603 resistors and capacitors, 0805 22 µF capacitors, and a 10 µH 0805 inductor. Step 4 lists exact values.
+
+## Step 4 results
+
+The schematic is in EasyEDA project `Marauder C5 Pancake`, seven sheets, as in `requirements-and-plan.md`, section 8.1.
+
+| Check | Result | Evidence |
+|---|---|---|
+| Netlist against the design table | 79 parts, 65 nets, 0 differences; no single-pin nets | Exported netlist compared by script |
+| Unused pins | Marked no-connect | Schematic |
+| ERC | DW_VDD duplicate name fixed. Two warnings accepted: part names were set to values such as 10k, which differs from the library Name. Supplier Part codes are correct in the netlist | EasyEDA log, read by the reviewer; rerun pending |
+| 3D models | 41 of 42 distinct parts; TPS63802 has none, use a 3 × 2 × 1 mm envelope | Library record |
+
+Symbol pins checked against the datasheet: BQ24074, TPS63802, MAX17048, ESP32-C5-WROOM-1U, CH343P, ATGM336H.
+
+Checked against typical use only, not against a datasheet: USBLC6-2SC6, XL-1615 LED, SW1, MLT-8530, TS-1187A, FS8205A, DW01A pin order.
+
+Library part changes from step 3: 10 kΩ resistors use C98220, because the C25804 symbol has an oversized designator. Several resistor codes from step 3 pointed at the wrong value, and the list here uses the verified ones.
+
+Test points are planned as pads on the PCB, not as schematic parts. J3 (debug) and J4 (spare) carry UART0, EN, BOOT, 3V3, VSYS, and the spare GPIO on unpopulated headers.

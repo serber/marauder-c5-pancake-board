@@ -10,7 +10,7 @@ Status: EasyEDA and script checks only. **No simulation, no bench test, no therm
 | PCB against the design table | 75 of 75 parts, 0 pad-net differences | PCB pads compare |
 | PCB DRC, strict | 0 errors, including connectivity | EasyEDA, after pour refill |
 | Dangling track ends | None, 3 removed after the reroute | Script. DRC does not report these |
-| Designators against pads, holes, and each other | 0 overlaps at 1.0 mm text | Script, text bounding boxes |
+| Designators against pads, holes, and each other | 0 overlaps at 1.0 mm text; C12 and Q2 labels sit within 0.15 mm of a pad after manual moves | Script, text bounding boxes |
 | Display socket | Pin 1 at X 44.26, pin 14 at X 11.24 | Read from EasyEDA |
 | Part overlaps | None | Bounding boxes, script |
 | Edge and holder margin | Parts about 1.5 mm or more away; J1 and SW1 at the edge by design | Bounding boxes, script |

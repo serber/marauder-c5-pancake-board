@@ -72,7 +72,7 @@ The reviewer asked for more room for the designators on 2026-11-06. Blocks and p
 
 Designators went from 1.14 mm to 1.0 mm and were placed by script next to their parts, clear of pads, holes, bodies, and each other. Nothing is hidden under the holder or the module.
 
-The reviewer then adjusted the designators by hand in EasyEDA. SW2 and SW3 also carry `RESET` and `BOOT` labels, 1.14 mm high, above the buttons.
+The reviewer then adjusted the designators by hand in EasyEDA. SW2 and SW3 show `RESET` and `BOOT` labels instead of their designators, 1.14 mm high, above the buttons.
 
 C11 now sits about 3.7 mm from module pin 2. C12 stays about 1 mm from it, and both connect to the L3 3V3 pour.
 

@@ -13,8 +13,8 @@ Status: EasyEDA and script checks only. **No simulation, no bench test, no therm
 | Part overlaps | None | Bounding boxes, script |
 | Edge and holder margin | Parts about 1.5 mm or more away; J1 and SW1 at the edge by design | Bounding boxes, script |
 | 3D fit with the display and cell | **Not done** | Open the STEP file |
-
-Schematic ERC after the last changes was not read in the EasyEDA UI.
+| Schematic ERC, strict | 0 errors, 3 warnings | `sch_Drc.check` on 2026-11-06. The API returns only the count, so read the warning text in the UI |
+| Copper near M3 hardware | Non-GND copper is at least 2.76 mm from any hole center, Q5_B at H4 | Script, on L1 and L4 |
 
 ## Copper capability
 
@@ -56,4 +56,22 @@ Estimates use the IPC-2221 formula in `design-rules.md`, at peak current as if c
 3. **Backlight** can be dim at VCC = 3.3 V.
 4. **GPIO14** floats with no GPS on J2.
 5. **Holder** tab spacing and height are not measured against the bought part.
-6. **Stack-up** must be set to JLC04161H-7628, 1.6 mm, 1 oz outer, 0.5 oz inner when ordering.
+6. **M3 hardware at H4.** A Ø5.5 mm head clears Q5_B by 0.01 mm, and a Ø7 mm washer sits over Q5_B. The tracks are under solder mask, so use an insulating washer or none there.
+7. **Stack-up** must be set to JLC04161H-7628, 1.6 mm, 1 oz outer, 0.5 oz inner when ordering.
+
+## Part availability
+
+Read on 2026-11-06 from the LCSC product API. Stock changes daily, so check again before buying.
+
+| Part | Refs | LCSC | Stock | Note |
+|---|---|---|---|---|
+| ESP32-C5-WROOM-1U-N8R8-V1.2 | U6 | C54951858 | **0** | Search snippets show Mouser 356-ESP32C5WRM1UN8R8 in stock; not confirmed on a live page. See the revision note below |
+| BQ24074RGTR | U2 | C54313 | **0** | Search snippets show Mouser and DigiKey in stock; not confirmed on a live page |
+| FS8205A | Q2 | C16052 | **0** | Commodity part, sold by many shops. Check the TSSOP-8 pinout of any substitute |
+| CC0603KRX7R9BB104 | C4, C5, C6, C12, C14, C16, C17, C19 | C14663 | 100 | Minimum order 50. Any 100 nF X7R 0603 fits |
+| 1042, WPN4020HR47MT, SDFL2012S100KTF, USBLC6-2SC6, DW01A, TPS63802DLAR | BT1, L1, L2, U1, U3, U5 | see links | **Unknown** | The API returned no record, which does not show the part is gone. Check by hand |
+| Other 31 BOM lines | | | 1,950 or more | Minimum order is above the quantity needed on many lines |
+
+**ESP32-C5 revision.** Espressif PCN20251201 moves ESP32-C5-WROOM-1U-N8R8 from chip revision v1.0 to v1.2 under the same part name. A module sold as plain N8R8 can carry either revision, so ask the seller for the chip revision and build firmware with an ESP-IDF that supports it. The change fixes a PSRAM consistency issue and an SRAM corruption issue. Whether LCSC's "-V1.2" listing is the same module outline as the plain part was not checked against a drawing.
+
+Sources: [PCN20251201](https://documentation.espressif.com/en/PCN20251201_Upgrade_of_ESP32-C5_Series_Products.html), [DigiKey listing](https://www.digikey.com.au/en/products/detail/espressif-systems/ESP32-C5-WROOM-1U-N8R8/27566801).

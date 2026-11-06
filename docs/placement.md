@@ -11,7 +11,7 @@ The image shows body outlines on the top layer. The board outline, holes, and th
 | Item | Value |
 |---|---|
 | Outline | 55.50 × 98.00 mm, 3.0 mm corner radius |
-| Holes | 4 × Ø3.2 mm for M3, plated, Ø5.5 mm pad on GND, at (3, 3), (52.5, 3), (3, 95), (52.5, 95) |
+| Holes | 4 × Ø3.2 mm for M3, plated, Ø5.0 mm pad on GND, at (3, 3), (52.5, 3), (3, 95), (52.5, 95) |
 
 The corner radius is concentric with the holes.
 

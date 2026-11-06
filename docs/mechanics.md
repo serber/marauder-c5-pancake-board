@@ -29,7 +29,7 @@ In EasyEDA, the electronics side is the **top layer**. The display socket is a t
 | H3 | 3.00 | 95.00 |
 | H4 | 52.50 | 95.00 |
 
-Holes are Ø3.20 mm for M3, with a 49.50 × 92.00 mm pattern **[fact]**. Pads on our board are Ø5.5 mm on GND **[decision]**. Corners have a 3.0 mm radius, concentric with the holes **[decision]**.
+Holes are Ø3.20 mm for M3, with a 49.50 × 92.00 mm pattern **[fact]**. Pads on our board are Ø5.0 mm on GND, reduced from Ø5.5 mm to meet the outline clearance **[decision]**. Corners have a 3.0 mm radius, concentric with the holes **[decision]**.
 
 ## Display socket
 
@@ -80,7 +80,7 @@ The cell holder is fitted by hand after reflow, because the plastic of an unbran
 |---|---|---|
 | Body | 77 × 20.8 mm | [fact] seller image |
 | Height | 14.86 mm | [fact] Keystone 1042 listing, not the bought part |
-| Tab-to-tab length | Unknown | Measure |
+| Tab-to-tab length | Footprint pad centers 78.7 mm, span 86.7 mm | [fact] for Keystone 1042 footprint. Measure the bought part |
 
 **[decision]** The body lies along the long axis, against the left edge, centered in Y.
 
@@ -101,7 +101,7 @@ The cell is user-swappable (P11), so the future case needs a battery door or a r
 |---|---|---|
 | Under the holder body | No parts, no exposed copper, no vias on top | Open frame, and the can sits close to the board |
 | Display-facing side | Only the socket, standoffs, LED1, and C14 | SD card, FPC, display parts up to 2.20 mm |
-| Around holes | Ø5.5 mm free on both sides | M3 hardware |
+| Around holes | Ø5.5 mm free of parts on both sides; only GND copper is exposed, on the Ø5.0 mm pad | M3 hardware. Non-GND tracks under solder mask come as close as 2.76 mm from the center of H4 |
 | Right edge near Y 51 | Keep the edge accessible in the case | SD card opening on the display |
 
 ## SD card access

@@ -11,4 +11,6 @@ Prototype release, exported from EasyEDA Pro 3.2.209 on 2026-11-06. **Not valida
 
 Order settings: 4 layers, 1.6 mm, JLC04161H-7628, 1 oz outer, 0.5 oz inner, 55.5 × 98 mm, stencil for the top side.
 
+Exported again after the spacing pass in `docs/placement.md`.
+
 Check before ordering: the bought 18650 holder against the footprint, the real display against `docs/mechanics.md`, and part stock.

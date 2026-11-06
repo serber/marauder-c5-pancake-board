@@ -59,6 +59,21 @@ The capacitor ground pads reach the IC ground through L2. This is an estimate of
 | R10, C4 | Near U3, which is at the − tab, so VDD runs from the + tab along the board as a low-current trace |
 | C11, C12 | At module pin 2 |
 
+## Spacing pass for silkscreen
+
+The reviewer asked for more room for the designators on 2026-11-06. Blocks and power copper stayed in place; only tight columns of passives moved.
+
+| Parts | Change |
+|---|---|
+| C11, C12, R19, C13, R20, R21 | Column at X 31.8, pitch 2.0 → 2.7 mm, Y 44.0 to 30.5 |
+| R3, R4, R5, R6 | Y 80.5 → 81.0, pitch 2.0 → 2.2 mm, X 24.5 to 31.1 |
+| C6, R15 | Y 72.5 and 69.9, pitch 2.6 mm above R16 |
+| R18, R17 | Y 64.7 and 62.1, pitch 2.6 mm below R16 |
+
+Designators went from 1.14 mm to 1.0 mm and were placed by script next to their parts, clear of pads, holes, bodies, and each other. Nothing is hidden under the holder or the module.
+
+C11 now sits about 3.7 mm from module pin 2. C12 stays about 1 mm from it, and both connect to the L3 3V3 pour.
+
 ## Routability
 
 | Metric | Value | Evidence |

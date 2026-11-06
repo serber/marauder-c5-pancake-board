@@ -34,6 +34,12 @@ Pours are inset 0.3 mm from the board edge.
 | VBUS | L4, 0.5 mm from USB-C to the charger |
 | USB D+/D− | J1 pins joined with vias; about 22–25 mm to U7, no impedance control, no matched pair |
 
+## Reroute after the spacing pass
+
+CHG_ILIM, CHG_ISET, CHG_TMR, CHG_TS, DCDC_EN, DCDC_FB, DCDC_MODE, ESP_BOOT, ESP_EN, RGB_DIN, and SPARE_IO0 were ripped up and rerouted, with new GND and 3V3 stubs at the moved parts. CHG_TS and CHG_ISET were routed by hand, because the autorouter failed on CHG_ISET. Critical nets in the table above did not change.
+
+ESP_BOOT runs mainly on L4 at X 36.6, as before. ESP_EN now has a 25 mm run on L1 at X 36, Y 43 to 68. Neither net has an impedance or length limit.
+
 ## Exceptions
 
 | Item | Reason | Effect |

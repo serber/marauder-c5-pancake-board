@@ -1,7 +1,7 @@
 # Marauder ESP32-C5 board with the Pancake pinout: requirements and plan
 
 Status: **steps 1 to 9 done; remaining gates waived by the reviewer on 2026-11-06. Prototype package exported, not ordered, board not validated**
-Date: 2026-11-06 · Board revision: A (not started)
+Date: 2026-11-06 · Board revision: rev1 (prototype, not built)
 
 This is the main project document. All work follows section 8, and decisions go in the log in section 10.
 
@@ -329,7 +329,7 @@ The user requires the schematic to be split into separate sheets by function. Ea
 |---|---|---|---|
 | 1 | 2026-11-05 | Q1: the target is the Pancake pinout with `pancake` firmware. The user confirmed by renaming the repository and recreating the project | Repository `marauder-c5-pancake-board`, EasyEDA project `Marauder C5 Pancake` |
 | 1 | 2026-11-05 | All project files and Markdown are written in English | This file translated |
-| 6–9 | 2026-11-06 | **Gates waived:** the reviewer approved all remaining steps in advance, unless something critical appears, and left the work unattended. Routing mode C chosen by the agent. No ordering, no push | `routing.md`, `verification.md`, `pcb/fabrication/` |
+| 6–9 | 2026-11-06 | **Gates waived:** the reviewer approved all remaining steps in advance, unless something critical appears, and left the work unattended. Routing mode C chosen by the agent. No ordering, no push | `routing.md`, `verification.md`, `release/rev1/` |
 | 4, 6 | 2026-11-06 | LED changed to SK6812MINI-HS on the display side, powered from DCDC_SW, with a side window in the case. USB-C moved to the right edge beside SW1. Parts kept away from the edge and holder | `placement.md`, `circuit-design.md`, `mechanics.md` |
 | 6 | 2026-11-06 | Header kept for the display instead of the P2 flat cable | — |
 | 1, 4, 5, 6 | 2026-11-06 | On-board GPS removed; J2 kept and populated. U8, J6, L3, R29 deleted, RF_50R class deleted, module moved down, placement respaced | All docs |

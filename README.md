@@ -4,7 +4,9 @@ A single board for [ESP32 Marauder](https://github.com/justcallmekoko/ESP32Marau
 
 ![Board, electronics side](docs/images/board-top.png)
 
-*3D render with the planned purple soldermask. Silkscreen is shown only in part. The cell, the display, and the unpopulated J3 and J4 headers are not shown.*
+*Render from the EasyEDA 3D preview with the planned purple soldermask. The cell and the display are not shown. The render includes the unpopulated J3, J4, R12, R16, R23, R24, R27, and R28, and U5 has no 3D model.*
+
+![Board, overview](docs/images/board-overview.png)
 
 > **Status: rev1 prototype.** The design passes EasyEDA DRC with 0 errors, but no board has been built or tested. Details: [verification](docs/verification.md).
 

@@ -1,6 +1,6 @@
 # Release rev1
 
-Prototype release, exported from EasyEDA Pro 3.2.209 on 2026-11-06. **Not validated and not ordered.** Unresolved items are in [`docs/verification.md`](../../docs/verification.md).
+Prototype release, exported from EasyEDA Pro 3.2.209 on 2026-11-07. **Not validated and not ordered.** Unresolved items are in [`docs/verification.md`](../../docs/verification.md).
 
 | File | Content |
 |---|---|

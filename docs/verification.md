@@ -70,9 +70,10 @@ Read on 2026-11-06 from the LCSC product API. Stock changes daily, so check agai
 | ESP32-C5-WROOM-1U-N8R8-V1.2 | U6 | C54951858 | **0** | Search snippets show Mouser 356-ESP32C5WRM1UN8R8 in stock; not confirmed on a live page. See the revision note below |
 | BQ24074RGTR | U2 | C54313 | **0** | Search snippets show Mouser and DigiKey in stock; not confirmed on a live page |
 | FS8205A | Q2 | C16052 | **0** | Commodity part, sold by many shops. Check the TSSOP-8 pinout of any substitute |
-| CC0603KRX7R9BB104 | C4, C5, C6, C12, C14, C16, C17, C19 | C14663 | 100 | Minimum order 50. Any 100 nF X7R 0603 fits |
+| CL10B104KB8NNNC | C4, C5, C6, C12, C14, C16, C17, C19 | C1591 | Not checked | Replaced `CC0603KRX7R9BB104` on 2026-11-09. Any 100 nF X7R 50 V 0603 fits |
+| RC0603FR-07 and RC0603JR-07 series | R1, R2, R4–R8, R10, R11, R13–R15, R17, R18, R22 | see BOM | Not checked | Replaced UNI-ROYAL `0603WAF` parts on 2026-11-09 |
 | 1042, WPN4020HR47MT, SDFL2012S100KTF, USBLC6-2SC6, DW01A, TPS63802DLAR | BT1, L1, L2, U1, U3, U5 | see links | **Unknown** | The API returned no record, which does not show the part is gone. Check by hand |
-| Other 31 BOM lines | | | 1,950 or more | Minimum order is above the quantity needed on many lines |
+| Other BOM lines | | | 1,950 or more | Minimum order is above the quantity needed on many lines |
 
 **ESP32-C5 revision.** Espressif PCN20251201 moves ESP32-C5-WROOM-1U-N8R8 from chip revision v1.0 to v1.2 under the same part name. A module sold as plain N8R8 can carry either revision, so ask the seller which one it is. The change fixes a PSRAM consistency issue and an SRAM corruption issue. LCSC C51950748 (plain N8R8) and C54951858 (N8R8-V1.2) use the same EasyEDA footprint record, and the PCN describes a chip metal-layer change with the same part number, so both fit U6. The module marking tells them apart: MCXXXX is v1.0, MDXXXX is v1.2. Do not set "Minimum Supported ESP32-C5 Revision" to v1.2 in firmware for a v1.0 module.
 

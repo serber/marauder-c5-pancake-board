@@ -327,6 +327,7 @@ The user requires the schematic to be split into separate sheets by function. Ea
 
 | Step | Date | Decision | Changes |
 |---|---|---|---|
+| 9 | 2026-11-09 | Passives unified so that one value is not bought from two makers: all MLCC are Samsung CL, all chip resistors Yageo RC. Values, footprints, ratings and voltages unchanged; 1 µF stays 50 V, 10 µF and 22 µF keep 10 V and 25 V because Samsung has no 50 V part in the same package. 100 nF, 1k and 10k now match the parts on `lmp91000-afe` v1.0. Schematic attributes changed through the API, PCB updated from the schematic: only MPN and LCSC changed, nets, pads, tracks and footprints unchanged, DRC clean. Gerber geometry unchanged, so `gerber-rev1.zip` is kept | `bom-rev1.csv`, `placement-rev1.csv`, `BOM.md`, `SHA256SUMS`, `component-links.md`, `verification.md` |
 | 1 | 2026-11-05 | Q1: the target is the Pancake pinout with `pancake` firmware. The user confirmed by renaming the repository and recreating the project | Repository `marauder-c5-pancake-board`, EasyEDA project `Marauder C5 Pancake` |
 | 1 | 2026-11-05 | All project files and Markdown are written in English | This file translated |
 | 9 | 2026-11-07 | Release exported again after the user's silkscreen moves. Gerber compare: only the silkscreen layers changed; copper differs by 1 µm rounding and one pour vertex per layer; BOM and placement are byte-identical. Renders now come from the EasyEDA 3D preview | `gerber-rev1.zip`, `SHA256SUMS`, `docs/images/board-top.png`, `board-bottom.png`, new `board-overview.png` |

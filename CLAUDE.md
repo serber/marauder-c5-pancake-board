@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## What this repository is
 
 Hardware project: ESP32 Marauder board on the ESP32-C5 with the Pancake pinout. There is no code, build, lint or test. It targets the public `MARAUDER_PANCAKE` firmware build, so the pinout must not change.
@@ -16,15 +14,15 @@ Hardware project: ESP32 Marauder board on the ESP32-C5 with the Pancake pinout. 
 
 ## Layout
 
-- `docs/requirements-and-plan.md` is the main document: requirements, plan, gate log, and decision log.
-- `docs/verification.md` holds the checks, known risks, and part availability. Read it before saying anything about the state of the board.
-- `release/rev1/` is the ordering package. `README.md` and `BOM.md` are written by hand or generated; the rest are EasyEDA exports. `*.step` stays local.
-- This repository is the reference for the shared board layout in `references/release-template.md` of the `power-pcb-design` skill.
+- `docs/SPEC.md`: requirements, pinout, architecture, mechanics.
+- `docs/DESIGN-RECORD.md`: gate log, calculations, rules, placement, routing, verification, known risks. Read "Step 8: verification" before saying anything about the state of the board.
+- `release/rev1/` is the ordering package. `README.md` and `BOM.md` are written by hand; the rest are EasyEDA exports. `*.step` stays local.
+- The layout follows `references/release-template.md` of the `power-pcb-design` skill.
 
 ## Working rules
 
 - Reply in Russian. Write all repository files in English.
-- Use the `power-pcb-design` skill for design work, and log decisions in `docs/requirements-and-plan.md`.
+- Use the `power-pcb-design` skill for design work, and log decisions in the gate log of `docs/DESIGN-RECORD.md`.
 - Never order boards or upload to a fabricator without explicit permission.
 - Keep `origin` on HTTPS.
 - The board is a prototype: nothing has been built or measured. State whether a result was calculated, checked in CAD, or measured.

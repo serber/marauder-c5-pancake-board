@@ -4,11 +4,16 @@ A single board for [ESP32 Marauder](https://github.com/justcallmekoko/ESP32Marau
 
 ![Board, electronics side](docs/images/board-top.png)
 
-*Render from the EasyEDA 3D preview with the planned purple soldermask. The cell and the display are not shown. The render includes the unpopulated J3, J4, R12, R16, R23, R24, R27, and R28, and U5 has no 3D model.*
+*Render, not a photo. The cell and the display are not shown. Unpopulated J3, J4, R12, R16, R23, R24, R27 and R28 are drawn; U5 has no 3D model.*
 
-![Board, overview](docs/images/board-overview.png)
+## Status
 
-> **Status: rev1 prototype.** The design passes EasyEDA DRC with 0 errors, but no board has been built or tested. Details: [verification](docs/verification.md).
+| Part | State |
+|---|---|
+| PCB | rev1, EasyEDA Pro, DRC 0 errors. Not manufactured |
+| Validation | Calculated and checked in CAD only. Nothing measured |
+
+Known risks: [design record](docs/DESIGN-RECORD.md#known-risks-for-the-first-board).
 
 ## Features
 
@@ -29,11 +34,13 @@ A single board for [ESP32 Marauder](https://github.com/justcallmekoko/ESP32Marau
 | Battery | One 18650 Li-ion cell in a solder-on holder, user-swappable |
 | Connectors | USB-C, 1×14 display socket, 1×5 GPS header |
 
+![Board, overview](docs/images/board-overview.png)
+
 ![Board, display side](docs/images/board-bottom.png)
 
 ## Ordering
 
-Files are in [`release/rev1`](release/rev1). Upload `gerber-rev1.zip` and send this instruction:
+Upload [`release/rev1/gerber-rev1.zip`](release/rev1) and send:
 
 ```text
 5PCS, FR4, 4 LAYERS, 1.6MM, OUTER 1OZ, INNER 0.5OZ, STACKUP JLC04161H-7628, Purple Soldermask, White Legend, ENIG, TENTED VIAS, NO IMPEDANCE CONTROL, order number will be added.
@@ -43,26 +50,25 @@ STENCIL: 1PCS, TOP SIDE ONLY.
 | Item | Value | Why |
 |---|---|---|
 | Layers | 4 | L2 is solid GND, L3 is the 3V3 pour |
-| Copper | 1 oz outer, 0.5 oz inner | Current estimates in the [design rules](docs/design-rules.md) use these weights |
+| Copper | 1 oz outer, 0.5 oz inner | Current estimates in the [design record](docs/DESIGN-RECORD.md#step-5-rules-and-stack-up) use these weights |
 | Stack-up | JLC04161H-7628 | JLCPCB name. Other fabs can use their standard 1.6 mm 4-layer stack-up, because no net is impedance-controlled |
 | Surface finish | ENIG | Flat pads for the 0.5 mm QFN and TDFN parts. Lead-free HASL also works, with more risk of bridges |
 | Smallest features | 0.15 mm track, 0.102 mm clearance rule, 0.3 mm via drill, 0.6 mm via pad | Within common 4-layer limits; confirm with the fab |
 | Stencil | Top side | `LED1` and `C14` on the display side are soldered by hand |
 
-Before ordering, measure the real holder and display against [`docs/mechanics.md`](docs/mechanics.md).
+Before ordering, measure the real holder and display against [`docs/SPEC.md`](docs/SPEC.md#6-mechanics).
 
 ## Bill of materials
 
-See [`release/rev1/BOM.md`](release/rev1/BOM.md). `U6`, `U2`, and `Q2` were out of stock at LCSC on 2026-11-06, so check them first.
+See [`release/rev1/BOM.md`](release/rev1/BOM.md).
 
 ## Repository
 
 | Path | Content |
 |---|---|
-| [`release/rev1`](release/rev1) | Gerbers, BOM, and placement for ordering |
-| [`docs/requirements-and-plan.md`](docs/requirements-and-plan.md) | Requirements, plan, and decision log |
-| [`docs/circuit-design.md`](docs/circuit-design.md), [`docs/power-design.md`](docs/power-design.md) | Schematic and power design |
-| [`docs/mechanics.md`](docs/mechanics.md), [`docs/placement.md`](docs/placement.md), [`docs/routing.md`](docs/routing.md) | Mechanics and layout |
-| [`docs/verification.md`](docs/verification.md) | Checks, known risks, and part availability |
+| [`release/rev1`](release/rev1) | Ordering package: Gerber, BOM, placement |
+| [`docs/SPEC.md`](docs/SPEC.md) | Requirements, pinout, mechanics |
+| [`docs/DESIGN-RECORD.md`](docs/DESIGN-RECORD.md) | Decisions, calculations, checks, open items |
+| [`docs/images`](docs/images) | Renders |
 
-The EasyEDA Pro project is not stored in this repository.
+The EasyEDA Pro project `Marauder C5 Pancake` is not stored here.

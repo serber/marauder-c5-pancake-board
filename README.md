@@ -43,7 +43,7 @@ Known risks: [design record](docs/DESIGN-RECORD.md#known-risks-for-the-first-boa
 Upload [`release/rev1/gerber-rev1.zip`](release/rev1) and send:
 
 ```text
-5PCS, FR4, 4 LAYERS, 1.6MM, OUTER 1OZ, INNER 0.5OZ, STACKUP JLC04161H-7628, Purple Soldermask, White Legend, ENIG, TENTED VIAS, NO IMPEDANCE CONTROL, order number will be added.
+5PCS, FR4, 4 LAYERS, 1.6MM, OUTER 1OZ, INNER 0.5OZ, STACKUP JLC04161H-7628, Purple Soldermask, White Legend, Lead-free HASL, TENTED VIAS, NO IMPEDANCE CONTROL, order number will be added.
 STENCIL: 1PCS, TOP SIDE ONLY.
 ```
 
@@ -52,7 +52,7 @@ STENCIL: 1PCS, TOP SIDE ONLY.
 | Layers | 4 | L2 is solid GND, L3 is the 3V3 pour |
 | Copper | 1 oz outer, 0.5 oz inner | Current estimates in the [design record](docs/DESIGN-RECORD.md#step-5-rules-and-stack-up) use these weights |
 | Stack-up | JLC04161H-7628 | JLCPCB name. Other fabs can use their standard 1.6 mm 4-layer stack-up, because no net is impedance-controlled |
-| Surface finish | ENIG | Flat pads for the 0.5 mm QFN and TDFN parts. Lead-free HASL also works, with more risk of bridges |
+| Surface finish | Lead-free HASL | Cheaper. The 0.5 mm QFN and TDFN parts are soldered with a preheater and hot air; check for bridges. ENIG is an option at extra cost |
 | Smallest features | 0.15 mm track, 0.102 mm clearance rule, 0.3 mm via drill, 0.6 mm via pad | Within common 4-layer limits; confirm with the fab |
 | Stencil | Top side | `LED1` and `C14` on the display side are soldered by hand |
 
